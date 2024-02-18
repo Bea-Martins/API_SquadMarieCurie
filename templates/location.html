@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+  <h1 class="h5">PERFIL DA LOCALIZAÇÃO</h1>
+  <div class="col-sm-3 col-6">
+    <br>
+    <p>
+      <b>Nome:</b> {{ location.name }}
+    </p>
+    <p>
+      <b>Tipo:</b> {{ location.type }}
+    </p>
+    <p>
+      <b>Dimensão:</b> {{ location.dimension }}
+    </p>
+    <p>
+      <b>Lista de personagens:</b>
+    </p>
+  </div>
+
+  <div class="row">
+    {% for character in location.residents %}
+      {% set character_split = character.split('/') %}
+      {% set id = character_split[-1] %}
+      <p>
+        <a href="/profile/{{id}}">{{character}}</a>
+      </p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
