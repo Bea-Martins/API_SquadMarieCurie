@@ -20,13 +20,11 @@
   </div>
 
   <div class="row">
-    {% for character in location.residents %}
-      {% set character_split = character.split('/') %}
-      {% set id = character_split[-1] %}
+    {% for character in residents %}
       <p>
-        <a href="/profile/{{id}}">{{character}}</a>
+        <a href="/profile/{{character.id}}">{{character.name}}</a>
       </p>
     {% endfor %}
-  </div>
+  </div>  
 </div>
 {% endblock %}
