@@ -81,3 +81,36 @@ def get_list_characters():
 
 # Retorna um dicionário contendo a chave "characters" com a lista de personagens.
   return {"characters": characters_list}
+
+    @app.route('/episode/<int:id>')
+def episode(id):
+    # Obtem dos dados do episódio
+    episode_response = requests.get(f'https://rickandmortyapi.com/api/episode/{id}')
+    episode_data = episode_response.json()
+
+    # Inicializa da lista para armazenar informações dos personagens
+    characters_info = []
+
+    # Obtem das informações de cada personagem que aparece no episódio
+    for character_url in episode_data['characters']:
+        character_response = requests.get(character_url)
+        character_data = character_response.json()
+        characters_info.append({
+            'name': character_data['name'],
+            'image': character_data['image'],
+            'url': character_data['url']
+        })
+
+    # Prepara dos dados para serem enviados ao template
+    episode_info = {
+        'name': episode_data['name'],
+        'air_date': episode_data['air_date'],
+        'episode': episode_data['episode'],
+        'characters': characters_info
+    }
+
+    # Renderiza do template, passando os dados do episódio
+    return render_template('episode.html', episode=episode_info)
+
+if __name__ == '__main__':
+    app.run(debug=True)
