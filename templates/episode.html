@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Episódio {{ episode.name }}</title>
+</head>
+<body>
+    <h1>{{ episode.name }}</h1>
+    <p>Data de lançamento: {{ episode.air_date }}</p>
+    <p>Código: {{ episode.episode }}</p>
+    <h2>Personagens</h2>
+    <ul>
+        {% for character in characters %}
+        <li><a href="/character/{{ character.url }}">{{ character.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
