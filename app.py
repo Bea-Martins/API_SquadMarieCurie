@@ -28,6 +28,22 @@ def get_profile(id):
 
   return render_template("profile.html", profile=dict)
 
+@app.route('/location/<id>')
+def get_locations(id):
+    url = "https://rickandmortyapi.com/api/location/" + id
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    dict = json.loads(data)
+
+    residents = []
+    for resident_url in dict['residents']:
+        response = urllib.request.urlopen(resident_url)
+        data = response.read()
+        resident_dict = json.loads(data)
+        residents.append({'name': resident_dict['name'], 'id': resident_dict['id']})
+
+    return render_template("location.html", location=dict, residents=residents)
+
 @app.route('/lista')
 def get_list_characters():
   url = "https://rickandmortyapi.com/api/character"
