@@ -44,6 +44,25 @@ def get_locations(id):
 
     return render_template("location.html", location=dict, residents=residents)
 
+@app.route("/locations")
+def get_list_locations():
+    url = "https://rickandmortyapi.com/api/location/"
+    response = urllib.request.urlopen(url) # abrir url
+    locations_data = response.read() # ler os dados recebidos
+    locations_dict = json.loads(locations_data) # formatar para json
+
+    locations = [] # criar uma lista
+
+    for location in locations_dict ["results"]:
+        location_info = {
+            "name": location["name"],
+            "type": location["type"],
+            "dimension": location["dimension"]
+        }
+
+        locations.append(location_info)
+    return render_template("locations.html", locations=locations)
+
 @app.route('/lista')
 def get_list_characters():
   url = "https://rickandmortyapi.com/api/character"

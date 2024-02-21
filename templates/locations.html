@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Lista de Localizações</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Tipo</th>
+                <th>Dimensão</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for location in locations %}
+            <tr>
+                <td>{{ location.name }}</td>
+                <td>{{ location.type }}</td>
+                <td><a href="/location/{{location.id}}" >{{ location.dimension }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
