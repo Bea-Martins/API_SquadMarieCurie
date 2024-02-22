@@ -55,6 +55,7 @@ def get_list_locations():
 
     for location in locations_dict ["results"]:
         location_info = {
+            "id": location["id"],
             "name": location["name"],
             "type": location["type"],
             "dimension": location["dimension"]
