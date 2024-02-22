@@ -32,14 +32,14 @@ def get_profile(id):
 def get_locations(id):
     url = "https://rickandmortyapi.com/api/location/" + id
     response = urllib.request.urlopen(url)
-    data = response.read()
-    dict = json.loads(data)
+    location_data = response.read()
+    dict = json.loads(location_data)
 
     residents = []
     for resident_url in dict['residents']:
         response = urllib.request.urlopen(resident_url)
-        data = response.read()
-        resident_dict = json.loads(data)
+        location_data = response.read()
+        resident_dict = json.loads(location_data)
         residents.append({'name': resident_dict['name'], 'id': resident_dict['id']})
 
     return render_template("location.html", location=dict, residents=residents)
@@ -62,6 +62,25 @@ def get_list_locations():
 
         locations.append(location_info)
     return render_template("locations.html", locations=locations)
+
+@app.route("/episodes")
+def get_list_episodes():
+    url = "https://rickandmortyapi.com/api/episode"
+    response = urllib.request.urlopen(url)
+    episodes_data = response.read()
+    episodes_dict = json.loads(episodes_data)
+
+    episodes = [] 
+    for episode in episodes_dict ["results"]:
+        episode_info = {
+           "id": episode["id"],
+            "name": episode["name"],
+            "air_date": episode["air_date"],
+            "episode": episode["episode"]
+        }
+        episodes.append(episode_info)
+
+    return render_template("episodes.html", episodes=episodes)
 
 @app.route('/lista')
 def get_list_characters():
