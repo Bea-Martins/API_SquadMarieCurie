@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% block content%}
+<div>
+  <p><b>Name:</b> {{ prof_location.name }}</p>
+  <p><b>Type:</b> {{ prof_location.type }}</p>
+  <p><b>Dimension:</b> {{ prof_location.dimension }}</p>
+  <p><b>Lista de residentes:</b></p>
+</div>
+
+<div class="row">
+  {% for character in residents %}
+    <p>
+      <a href="/profile/{{character.id}}">{{character.name}}</a>
+    </p>
+  {% endfor %}
+</div>  
+{% endblock %}
