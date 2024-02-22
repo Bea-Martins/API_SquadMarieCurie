@@ -24,6 +24,15 @@ def get_profile(id):
         profile = json.loads(data)
     return render_template("profile.html", profile=profile)
 
+@app.route('/profile/location/<id>')
+def get_profile_locations(id):
+    url = f"https://rickandmortyapi.com/api/location/{id}"
+    with urllib.request.urlopen(url) as response:
+        profile_location_data = response.read()
+        profile_location_dict = json.loads(profile_location_data)
+
+    return render_template("profile-location.html", prof_location=profile_location_dict)
+
 @app.route('/location/<id>')
 def get_locations(id):
     url = f"https://rickandmortyapi.com/api/location/{id}"
