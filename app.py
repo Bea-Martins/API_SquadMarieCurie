@@ -31,7 +31,14 @@ def get_profile_locations(id):
         profile_location_data = response.read()
         profile_location_dict = json.loads(profile_location_data)
 
-    return render_template("profile-location.html", prof_location=profile_location_dict)
+    residents = []
+    for resident_url in profile_location_dict['residents']:
+        with urllib.request.urlopen(resident_url) as response:
+            resident_data = response.read()
+            resident_dict = json.loads(resident_data)
+            residents.append({'name': resident_dict['name'], 'id': resident_dict['id']})
+
+    return render_template("profile-location.html", prof_location=profile_location_dict, residents=residents)
 
 @app.route('/location/<id>')
 def get_locations(id):
