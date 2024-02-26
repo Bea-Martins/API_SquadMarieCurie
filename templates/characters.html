@@ -13,14 +13,14 @@
   <div class="col-sm-3 col-6">
     <!-- Cada personagem será exibido em uma coluna com largura específica -->
 
-    <img src="{{character.image}}" alt="{{character.name}}" class="img-fluid img-thumbnail" />
+    <img src="{{character.image}}" alt="{{character.name}}" class="img-fluid img-thumbnail" style="background-color: aquamarine;"/>
     <!-- Exibe a imagem do personagem com o nome -->
 
     <h3 class="h5">{{character.name}}</h3>
     <!-- Exibe o nome do personagem como um cabeçalho de nível 3 (h3) -->
 
     <p>
-      <a href="/profile/{{character.id}}" class="btn btn-primary">Ver perfil</a>
+      <a href="/profile/{{character.id}}" class="btn btn-primary" style="color: rgb(232, 244, 73) ;  background-color:rgb(36, 182, 180); border: none;">Ver perfil</a>
       <!-- Cria um link para o perfil do personagem com o ID específico -->
     </p>
   </div>

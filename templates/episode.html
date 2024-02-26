@@ -5,13 +5,13 @@
     <title>Episódio {{ episode.name }}</title>
 </head>
 <body>
-    <h1>{{ episode.name }}</h1>
-    <p>Data de lançamento: {{ episode.air_date }}</p>
-    <p>Código: {{ episode.episode }}</p>
-    <h2>Personagens</h2>
+    <h1 style="color: rgb(36,182,180);">{{ episode.name }}</h1>
+    <p style="color:rgb(36,182,180)">Data de lançamento: {{ episode.air_date }}</p>
+    <p style="color: rgb(36,182,180);">Código: {{ episode.episode }}</p>
+    <h2 style="color:rgb(36,182,180)">Personagens</h2>
     <ul>
         {% for character in characters %}
-        <li><a href="/character/{{ character.url }}">{{ character.name }}</a></li>
+        <li><a href="/character/{{ character.url }}" style="color:rgb(36,182,180)">{{ character.name }}</a></li>
         {% endfor %}
     </ul>
 </body>
